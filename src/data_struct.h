@@ -7,7 +7,7 @@
 
 using namespace std;
 
-enum type
+enum TypeUser
 {
 	STUDENT,
 	ACADEMIC_STAFF,
@@ -21,7 +21,7 @@ struct User
       mobilePhone,
       password,
       classCode;
-	type type;
+	TypeUser Type;
 };
 
 struct Course

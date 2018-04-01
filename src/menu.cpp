@@ -4,7 +4,7 @@
 void login(User &loginUser)
 {
   vUser UserList;
-  //readStudentList("../database/data_user.txt", UserList);
+  //readUserList("../database/data_user.txt", UserList);
   while (loginUser.username != "")
   {
     string username = "", password = "";
@@ -69,6 +69,32 @@ void showRoleList(User &loginUser)
     cout << "34. View schedules" << endl;
   }
   }
+  //check ACADEMIC_STAFF
+  if (loginUser.Type == ACADEMIC_STAFF)
+  {
+    int choice = 0;
+    do {
+      cout << "What do you want to do:";
+      cin >> choice;
+      if (choice < 6 || choice > 27)
+      {
+        cout << "You don't have permission." << endl;
+        char c;
+        do
+        {
+          cout << "Do you want to try again (y/n):";
+          cin >> c;
+        } while (tolower(c) != 'y' && tolower(c) != 'n');
+        if (tolower(c) == 'n') return;
+
+      }
+    } while (choice < 6 || choice > 27);
+    switch (choice) 
+      case 6:
+      {
+        importStudentOfClass();
+      }
+  }
 }
 
 void viewInfo(User loginUser)
@@ -99,4 +125,40 @@ void viewInfo(User loginUser)
   }
   cout << "Password: " << loginUser.password << endl;
   cout << "Class: " << loginUser.classCode << "\n\n";
+}
+
+void changePassword(User &loginUser)
+{
+  string oldPassword = "", newPassword = "";
+  cout << "Please input your old password:";
+  cin >> oldPassword;
+  cout << "Please input your new password:";
+  cin >> newPassword;
+  while (oldPassword != loginUser.password)
+  {
+    cout << "Your password is wrong." << endl;
+    char choice;
+    cout << "Do you want to try again (y/n):";
+    cin >> choice;
+    if (tolower(choice) == 'n')
+    {
+      return;
+    }
+    cout << "Please input your old password:";
+    cin >> oldPassword;
+    cout << "Please input your new password:";
+    cin >> newPassword;
+  }
+  loginUser.password = newPassword;
+  vUser UserList;
+  //readUserList("../database/data_user.txt", UserList);
+  for (int i = 0; i < UserList.size(); ++i)
+  {
+    if (UserList[i].username == loginUser.username)
+    {
+      UserList[i].password = loginUser.password;
+      break;
+    }
+  }
+  //saveUserList("../database/data_user.txt", UserList);
 }
