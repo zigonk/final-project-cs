@@ -20,13 +20,13 @@ int toNumber(string s)
   return res;
 }
 
-void readUserList(const char PATH[], vUser &UserList)
+void readUserList(char PATH[], vUser &UL)
 {
   ifstream fin;
   fin.open(PATH);
   if (!fin.is_open())
   {
-    cout << "Error ! Can't read the file !";
+    cout << "Error ! Can't read the file !" << endl;
     return;
   }
   string s;
@@ -47,18 +47,18 @@ void readUserList(const char PATH[], vUser &UserList)
       tmp.uType = STUDENT;
     tmp.password = modifyString(s);
     tmp.classCode = modifyString(s);
-    UserList.push_back(tmp);
+    UL.UserList.push_back(tmp);
   }
   fin.close();
 }
 
-void readClassList(char PATH[], vClass &ClassList)
+void readClassList(char PATH[], vClass &CL)
 {
   ifstream fin;
   fin.open(PATH);
   if (!fin.is_open())
   {
-    cout << "Error ! Can't read the file !";
+    cout << "Error ! Can't read the file !" << endl;
     return;
   }
   string s;
@@ -67,18 +67,18 @@ void readClassList(char PATH[], vClass &ClassList)
     s = s + ',';
     Class tmp;
     tmp.classCode = modifyString(s);
-    ClassList.push_back(tmp);
+    CL.ClassList.push_back(tmp);
   }
   fin.close();
 }
 
-void readPresenseList(char PATH[], vPersense &PersenseList)
+void readPresenseList(char PATH[], vPersense &PL)
 {
   ifstream fin;
   fin.open(PATH);
   if (!fin.is_open())
   {
-    cout << "Error ! Can't read the file !";
+    cout << "Error ! Can't read the file !" << endl;
     return;
   }
   string s;
@@ -91,18 +91,18 @@ void readPresenseList(char PATH[], vPersense &PersenseList)
     tmp.semester = toNumber(modifyString(s));
     tmp.studentID = modifyString(s);
     tmp.week = toNumber(modifyString(s));
-    PersenseList.push_back(tmp);
+    PL.PersenseList.push_back(tmp);
   }
   fin.close();
 }
 
-void readScoreList(char PATH[], vScore &ScoreList)
+void readScoreList(char PATH[], vScore &SL)
 {
   ifstream fin;
   fin.open(PATH);
   if (!fin.is_open())
   {
-    cout << "Error ! Can't read the file !";
+    cout << "Error ! Can't read the file !" << endl;
     return;
   }
   string s;
@@ -119,18 +119,18 @@ void readScoreList(char PATH[], vScore &ScoreList)
     tmp.finalScore = toNumber(modifyString(s));
     tmp.bonusScore = toNumber(modifyString(s));
     tmp.totalScore = toNumber(modifyString(s));
-    ScoreList.push_back(tmp);
+    SL.ScoreList.push_back(tmp);
   }
   fin.close();
 }
 
-void readCourseList(char PATH[], vCourse &CourseList)
+void readCourseList(char PATH[], vCourse &CL)
 {
   ifstream fin;
   fin.open(PATH);
   if (!fin.is_open())
   {
-    cout << "Error ! Can't read the file !";
+    cout << "Error ! Can't read the file !" << endl;
     return;
   }
   string s;
@@ -144,18 +144,18 @@ void readCourseList(char PATH[], vCourse &CourseList)
     tmp.courseName = modifyString(s);
     tmp.lecturerUserName = modifyString(s);
     tmp.classCode = modifyString(s);
-    CourseList.push_back(tmp);
+    CL.CourseList.push_back(tmp);
   }
   fin.close();
 }
 
-void readCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList)
+void readCourseScheduleList(char PATH[], vCourseSchedule &CSL)
 {
   ifstream fin;
   fin.open(PATH);
   if (!fin.is_open())
   {
-    cout << "Error ! Can't read the file !";
+    cout << "Error ! Can't read the file !" << endl;
     return;
   }
   string s;
@@ -169,28 +169,34 @@ void readCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList)
     tmpSchedule.from = modifyString(s);
     tmpSchedule.to = modifyString(s);
     tmpSchedule.dayOfWeek = toNumber(modifyString(s));
-    CourseScheduleList.push_back(tmpSchedule);
+    CSL.CourseScheduleList.push_back(tmpSchedule);
   }
   fin.close();
 }
 
-void writeClassList(char PATH[], vClass &ClassList)
+void writeUserList(char PATH[], vUser &UL)
 {
   ofstream fout;
   fout.open(PATH);
   if (!fout.is_open())
   {
-    cout << "Erorr ! Can't write to the file !";
+    cout << "Erorr ! Can't write to the file !" << endl;
     return;
   }
-  for (int i = 0; i < ClassList.size(); ++i)
+  for (int i = 0; i < UL.UserList.size(); ++i)
   {
-    cout << ClassList[i].classCode << '/n';
+    fout << UL.UserList[i].username << ',';
+    fout << UL.UserList[i].fullname << ',';
+    fout << UL.UserList[i].email << ',';
+    fout << UL.UserList[i].mobilePhone << ',';
+    fout << UL.UserList[i].uType << ',';
+    fout << UL.UserList[i].password << ',';
+    fout << UL.UserList[i].classCode << '\n';
   }
   fout.close();
 }
 
-void writePresenseList(char PATH[], vPersense &PersenseList)
+void writeClassList(char PATH[], vClass &CL)
 {
   ofstream fout;
   fout.open(PATH);
@@ -199,18 +205,14 @@ void writePresenseList(char PATH[], vPersense &PersenseList)
     cout << "Erorr ! Can't write to the file !";
     return;
   }
-  for (int i = 0; i < PersenseList.size(); ++i)
+  for (int i = 0; i < CL.ClassList.size(); ++i)
   {
-    cout << PersenseList[i].courseCode << ',';
-    cout << PersenseList[i].year << ',';
-    cout << PersenseList[i].semester << ',';
-    cout << PersenseList[i].studentID << ',';
-    cout << PersenseList[i].week << '\n';
+    fout << CL.ClassList[i].classCode << '\n';
   }
   fout.close();
 }
 
-void writeScoreList(char PATH[], vScore &ScoreList)
+void writePresenseList(char PATH[], vPersense &PL)
 {
   ofstream fout;
   fout.open(PATH);
@@ -219,21 +221,18 @@ void writeScoreList(char PATH[], vScore &ScoreList)
     cout << "Erorr ! Can't write to the file !";
     return;
   }
-  for (int i = 0; i < ScoreList.size(); ++i)
+  for (int i = 0; i < PL.PersenseList.size(); ++i)
   {
-    cout << ScoreList[i].courseCode << ',';
-    cout << ScoreList[i].year << ',';
-    cout << ScoreList[i].semester << ',';
-    cout << ScoreList[i].studentID << ',';
-    cout << ScoreList[i].midtermScore << ',';
-    cout << ScoreList[i].labScore << ',';
-    cout << ScoreList[i].finalScore << ',';
-    cout << ScoreList[i].totalScore << '\n';
+    fout << PL.PersenseList[i].courseCode << ',';
+    fout << PL.PersenseList[i].year << ',';
+    fout << PL.PersenseList[i].semester << ',';
+    fout << PL.PersenseList[i].studentID << ',';
+    fout << PL.PersenseList[i].week << '\n';
   }
   fout.close();
 }
 
-void writeCourseList(char PATH[], vCourse &CourseList)
+void writeScoreList(char PATH[], vScore &SL)
 {
   ofstream fout;
   fout.open(PATH);
@@ -242,19 +241,21 @@ void writeCourseList(char PATH[], vCourse &CourseList)
     cout << "Erorr ! Can't write to the file !";
     return;
   }
-  for (int i = 0; i < CourseList.size(); ++i)
+  for (int i = 0; i < SL.ScoreList.size(); ++i)
   {
-    cout << CourseList[i].courseCode << ',';
-    cout << CourseList[i].year << ',';
-    cout << CourseList[i].semester << ',';
-    cout << CourseList[i].courseName << ',';
-    cout << CourseList[i].lecturerUserName << ',';
-    cout << CourseList[i].classCode << '\n';
+    fout << SL.ScoreList[i].courseCode << ',';
+    fout << SL.ScoreList[i].year << ',';
+    fout << SL.ScoreList[i].semester << ',';
+    fout << SL.ScoreList[i].studentID << ',';
+    fout << SL.ScoreList[i].midtermScore << ',';
+    fout << SL.ScoreList[i].labScore << ',';
+    fout << SL.ScoreList[i].finalScore << ',';
+    fout << SL.ScoreList[i].totalScore << '\n';
   }
   fout.close();
 }
 
-void writeCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList)
+void writeCourseList(char PATH[], vCourse &CL)
 {
   ofstream fout;
   fout.open(PATH);
@@ -263,14 +264,35 @@ void writeCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList)
     cout << "Erorr ! Can't write to the file !";
     return;
   }
-  for (int i = 0; i < CourseScheduleList.size(); ++i)
+  for (int i = 0; i < CL.CourseList.size(); ++i)
   {
-    cout << CourseScheduleList[i].courseCode << ',';
-    cout << CourseScheduleList[i].startAt << ',';
-    cout << CourseScheduleList[i].endAt << ',';
-    cout << CourseScheduleList[i].from << ',';
-    cout << CourseScheduleList[i].to << ',';
-    cout << CourseScheduleList[i].dayOfWeek << '\n';
+    fout << CL.CourseList[i].courseCode << ',';
+    fout << CL.CourseList[i].year << ',';
+    fout << CL.CourseList[i].semester << ',';
+    fout << CL.CourseList[i].courseName << ',';
+    fout << CL.CourseList[i].lecturerUserName << ',';
+    fout << CL.CourseList[i].classCode << '\n';
+  }
+  fout.close();
+}
+
+void writeCourseScheduleList(char PATH[], vCourseSchedule &CSL)
+{
+  ofstream fout;
+  fout.open(PATH);
+  if (!fout.is_open())
+  {
+    cout << "Erorr ! Can't write to the file !";
+    return;
+  }
+  for (int i = 0; i < CSL.CourseScheduleList.size(); ++i)
+  {
+    fout << CSL.CourseScheduleList[i].courseCode << ',';
+    fout << CSL.CourseScheduleList[i].startAt << ',';
+    fout << CSL.CourseScheduleList[i].endAt << ',';
+    fout << CSL.CourseScheduleList[i].from << ',';
+    fout << CSL.CourseScheduleList[i].to << ',';
+    fout << CSL.CourseScheduleList[i].dayOfWeek << '\n';
   }
   fout.close();
 }
