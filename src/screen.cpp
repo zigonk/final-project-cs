@@ -27,7 +27,7 @@ void showMenu(User &loginUser) {
     }
     case 3:
     {
-      //changePassword(loginUser);
+      changePassword(loginUser);
       break;
     }
     case 4:
