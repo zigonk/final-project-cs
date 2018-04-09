@@ -20,7 +20,7 @@ int toNumber(string s)
   return res;
 }
 
-void readUserList(const string PATH, vUser &UserList)
+void readUserList(const char PATH[], vUser &UserList)
 {
   ifstream fin;
   fin.open(PATH);
@@ -52,7 +52,7 @@ void readUserList(const string PATH, vUser &UserList)
   fin.close();
 }
 
-void readClassList(const string PATH, vClass &ClassList)
+void readClassList(char PATH[], vClass &ClassList)
 {
   ifstream fin;
   fin.open(PATH);
@@ -72,7 +72,7 @@ void readClassList(const string PATH, vClass &ClassList)
   fin.close();
 }
 
-void readPresenseList(const string PATH, vPersense &PersenseList)
+void readPresenseList(char PATH[], vPersense &PersenseList)
 {
   ifstream fin;
   fin.open(PATH);
@@ -96,7 +96,7 @@ void readPresenseList(const string PATH, vPersense &PersenseList)
   fin.close();
 }
 
-void readScoreList(const string PATH, vScore &ScoreList)
+void readScoreList(char PATH[], vScore &ScoreList)
 {
   ifstream fin;
   fin.open(PATH);
@@ -124,7 +124,7 @@ void readScoreList(const string PATH, vScore &ScoreList)
   fin.close();
 }
 
-void readCourseList(const string PATH, vCourse &CourseList)
+void readCourseList(char PATH[], vCourse &CourseList)
 {
   ifstream fin;
   fin.open(PATH);
@@ -149,7 +149,7 @@ void readCourseList(const string PATH, vCourse &CourseList)
   fin.close();
 }
 
-void readCourseScheduleList(const string PATH, vCourseSchedule &CourseScheduleList)
+void readCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList)
 {
   ifstream fin;
   fin.open(PATH);
@@ -174,7 +174,7 @@ void readCourseScheduleList(const string PATH, vCourseSchedule &CourseScheduleLi
   fin.close();
 }
 
-void writeClassList(const string PATH, vClass &ClassList)
+void writeClassList(char PATH[], vClass &ClassList)
 {
   ofstream fout;
   fout.open(PATH);
@@ -190,7 +190,7 @@ void writeClassList(const string PATH, vClass &ClassList)
   fout.close();
 }
 
-void writePresenseList(const string PATH, vPersense &PersenseList)
+void writePresenseList(char PATH[], vPersense &PersenseList)
 {
   ofstream fout;
   fout.open(PATH);
@@ -210,7 +210,7 @@ void writePresenseList(const string PATH, vPersense &PersenseList)
   fout.close();
 }
 
-void writeScoreList(const string PATH, vScore &ScoreList)
+void writeScoreList(char PATH[], vScore &ScoreList)
 {
   ofstream fout;
   fout.open(PATH);
@@ -233,7 +233,7 @@ void writeScoreList(const string PATH, vScore &ScoreList)
   fout.close();
 }
 
-void writeCourseList(const string PATH, vScore &CourseList)
+void writeCourseList(char PATH[], vCourse &CourseList)
 {
   ofstream fout;
   fout.open(PATH);
@@ -254,7 +254,7 @@ void writeCourseList(const string PATH, vScore &CourseList)
   fout.close();
 }
 
-void writeCourseScheduleList(const string PATH, vScore &CourseScheduleList)
+void writeCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList)
 {
   ofstream fout;
   fout.open(PATH);

@@ -27,7 +27,7 @@ void login(User &loginUser)
 
 void showRoleList(User &loginUser)
 {
-  switch (loginUser.type)
+  switch (loginUser.uType)
   {
   case ACADEMIC_STAFF:
   {
@@ -70,7 +70,7 @@ void showRoleList(User &loginUser)
   }
   }
   //check ACADEMIC_STAFF
-  if (loginUser.Type == ACADEMIC_STAFF)
+  if (loginUser.uType == ACADEMIC_STAFF)
   {
     int choice = 0;
     do {
@@ -89,10 +89,10 @@ void showRoleList(User &loginUser)
 
       }
     } while (choice < 6 || choice > 27);
-    switch (choice) 
+    switch (choice)
       case 6:
       {
-        importStudentOfClass();
+        //importStudentOfClass();
       }
   }
 }
@@ -105,7 +105,7 @@ void viewInfo(User loginUser)
   cout << "Email: " << loginUser.email << endl;
   cout << "Mobile phone: " << loginUser.mobilePhone << endl;
   cout << "Type: ";
-  switch (loginUser.type)
+  switch (loginUser.uType)
   {
   case ACADEMIC_STAFF:
   {
