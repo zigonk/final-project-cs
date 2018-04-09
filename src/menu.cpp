@@ -3,20 +3,20 @@
 #include "data_struct.h"
 void login(User &loginUser)
 {
-  vUser UserList;
-  //readUserList("../database/data_user.txt", UserList);
-  while (loginUser.username != "")
+  vUser UL;
+  readUserList("../database/data_user.csv", UL);
+  while (loginUser.username == "")
   {
     string username = "", password = "";
     cout << "Input your username:" << endl;
     getline(cin, username);
     cout << "Input your password:" << endl;
     getline(cin, password);
-    for (int i = 0; i < UserList.size(); ++i)
+    for (int i = 0; i < UL.UserList.size(); ++i)
     {
-      if (UserList[i].username == username && UserList[i].password == password)
+      if (UL.UserList[i].username == username && UL.UserList[i].password == password)
       {
-        loginUser = UserList[i];
+        loginUser = UL.UserList[i];
         cout << "Login successfully"
              << "\n\n";
         break;
@@ -150,15 +150,15 @@ void changePassword(User &loginUser)
     cin >> newPassword;
   }
   loginUser.password = newPassword;
-  vUser UserList;
-  //readUserList("../database/data_user.txt", UserList);
-  for (int i = 0; i < UserList.size(); ++i)
+  vUser UL;
+  readUserList("../database/data_user.csv", UL);
+  for (int i = 0; i < UL.UserList.size(); ++i)
   {
-    if (UserList[i].username == loginUser.username)
+    if (UL.UserList[i].username == loginUser.username)
     {
-      UserList[i].password = loginUser.password;
+      UL.UserList[i].password = loginUser.password;
       break;
     }
   }
-  //saveUserList("../database/data_user.txt", UserList);
+  writeUserList("../database/data_user.csv", UL);
 }

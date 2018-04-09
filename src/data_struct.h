@@ -72,11 +72,28 @@ struct Class
 	string classCode;
 };
 
-typedef vector<User> vUser;
-typedef vector<Class> vClass;
-typedef vector<CourseSchedule> vCourseSchedule;
-typedef vector<Course> vCourse;
-typedef vector<Persense> vPersense;
-typedef vector<Score> vScore;
+struct vUser {
+	vector <User> UserList;
+};
+
+struct vClass {
+	vector <Class> ClassList;
+};
+
+struct vCourseSchedule {
+	vector<CourseSchedule> CourseScheduleList;
+};
+
+struct vCourse {
+	vector<Course> CourseList;
+};
+
+struct vPersense {
+	vector<Persense> PersenseList;
+};
+
+struct vScore {
+	vector<Score> ScoreList;
+};
 
 #endif
