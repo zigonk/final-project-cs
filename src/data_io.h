@@ -7,7 +7,7 @@ void readUserList(const string PATH, vUser &UserList);
 void readClassList(const string PATH, vClass &ClassList);
 void readCourseList(const string PATH, vCourse &CourseList);
 void readCourseScheduleList(const string PATH, vCourseSchedule &CourseScheduleList);
-void readPersenseList(const string PATH, vPersense &PersenseList);
+void searchAndViewAttendaceList(vCourse &CourseList, vPersense &PersenseList);
 void readScoreList(const string PATH, vScore &ScoreList);
 
 void writeClassList(const string PATH, vUser &UserList);
