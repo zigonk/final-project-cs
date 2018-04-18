@@ -1,6 +1,4 @@
 #include "screen.h"
-#include "menu.h"
-//#include "all_roles.h"
 
 void firstScreen(User &loginUser) {
   login(loginUser);
@@ -17,7 +15,7 @@ void showMenu(User &loginUser) {
   switch (number) {
     case 1:
     {
-      //showRoleList(loginUser);
+      showRoleList(loginUser);
       break;
     }
     case 2:

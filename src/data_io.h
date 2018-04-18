@@ -3,19 +3,19 @@
 
 #include "data_struct.h"
 
-void readUserList(const string PATH, vUser &UserList);
-void readClassList(const string PATH, vClass &ClassList);
-void readCourseList(const string PATH, vCourse &CourseList);
-void readCourseScheduleList(const string PATH, vCourseSchedule &CourseScheduleList);
-void readPersenseList(const string PATH, vPersense &PersenseList);
-void readScoreList(const string PATH, vScore &ScoreList);
+void readUserList(const char *PATH, vUser &User);
+void readClassList(char PATH[], vClass &ClassList);
+void readCourseList(const char *PATH, vCourse &CourseList);
+void readCourseScheduleList(const char *PATH, vCourseSchedule &CourseScheduleList);
+void readPresenseList(const char *PATH, vPresense &PresenseList);
+void readScoreList(const char *PATH, vScore &ScoreList);
 
-void writeUserList(char PATH[], vUser &User);
+void writeUserList(const char *PATH, vUser &User);
 void writeClassList(char PATH[], vUser &UserList);
 void writeCourseList(char PATH[], vCourse &CourseList);
-void writePersenseList(char PATH[], vPersense &PersenseList);
+void writePresenseList(const char *PATH, vPresense &PresenseList);
 void writeCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList);
-void writeScoreList(char PATH[], vScore &ScoreList);
+void writeScoreList(const char *PATH, vScore &ScoreList);
 
 #endif
 
