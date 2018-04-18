@@ -1,16 +1,17 @@
-#ifndef _DATA_STRUCT_
-#define _DATA_STRUCT_
+#ifndef _DATA_STRUCTURE_
+#define _DATA_STRUCTURE_
 
 #include <iostream>
 #include <cstring>
 #include <vector>
 #include <fstream>
 #include <ctime>
-#include <time.h>
+#include <ctime>
 #include <sstream>
 
 using namespace std;
 
+#define CLASS_PATH "..database/data_class.csv"
 #define PRESENCE_PATH "../database/data_presence.csv"
 #define SCORE_PATH "../database/data_score.csv"
 #define COURSE_PATH "../database/data_course.csv"

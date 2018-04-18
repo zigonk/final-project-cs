@@ -1,31 +1,29 @@
 #ifndef _ACADEMIC_ROLES_
 #define _ACADEMIC_ROLES_
 
-#include "data_struct.h"
+#include "data_io.h"
 
-#include "academic_roles.h"
+void addANewStudent();
+void editAnExistingStudent();
+void removeAStudent();
 
-void addANewStudent(vUser &UserList);
-void editAnExistingStudent(vUser &UserList);
-void removeAStudent(vUser &UserList);
+void changeStudentsFromClassAToClassB();
+void addANewEmptyClass();
+void viewListOfClass();
+void viewListOfStudentInAClass();
+void addANewCourse();
+void editAnCourse();
+void removeAnCourse();
 
-void changeStudentsFromClassAToClassB(vUser &UserList);
-void addANewEmptyClass(vClass &ClassList);
-void viewListOfClass(vClass &ClassList);
-void viewListOfStudentInAClass(vUser &UserList, vClass &ClassList);
-void addANewCourse(vCourse &CourseList);
-void editAnCourse(vCourse &CourseList);
-void removeAnCourse(vCourse &CourseList);
+void viewListOfACourse();
 
-void viewListOFACourse(vCourse &CourseList);
-
-void addACourseSchedule(vCourseSchedule &CourseScheduleList);
-void editACourseSchedule(vCourseSchedule& CourseScheduleList);
+void addACourseSchedule();
+void editACourseSchedule();
 
 
-void removeACourseSchedule(vCourseSchedule &CourseScheduleList);
+void removeACourseSchedule();
 
-void viewListOfCourseSchedule(vCourseSchedule &CourseScheduleList);
+void viewListOfCourseSchedule();
 
-void searchAndViewAttendaceList(vCourse &CourseList);
+void searchAndViewAttendaceList();
 #endif

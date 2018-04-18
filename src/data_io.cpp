@@ -52,7 +52,7 @@ void readUserList(const char *PATH, vUser &UL)
   fin.close();
 }
 
-void readClassList(char PATH[], vClass &CL)
+void readClassList(const char *PATH, vClass &CL)
 {
   ifstream fin;
   fin.open(PATH);
@@ -177,7 +177,7 @@ void writeUserList(const char *PATH, vUser &UL)
   fout.open(PATH);
   if (!fout.is_open())
   {
-    cout << "Erorr ! Can't write to the file !" << endl;
+    cout << "Error ! Can't write to the file !" << endl;
     return;
   }
   for (int i = 0; i < UL.UserList.size(); ++i)
@@ -193,13 +193,13 @@ void writeUserList(const char *PATH, vUser &UL)
   fout.close();
 }
 
-void writeClassList(char PATH[], vClass &CL)
+void writeClassList(const char *PATH, vClass &CL)
 {
   ofstream fout;
   fout.open(PATH);
   if (!fout.is_open())
   {
-    cout << "Erorr ! Can't write to the file !";
+    cout << "Error ! Can't write to the file !";
     return;
   }
   for (int i = 0; i < CL.ClassList.size(); ++i)
@@ -253,7 +253,7 @@ void writeScoreList(const char *PATH, vScore &SL)
   fout.close();
 }
 
-void writeCourseList(char PATH[], vCourse &CL)
+void writeCourseList(const char *PATH, vCourse &CL)
 {
   ofstream fout;
   fout.open(PATH);
