@@ -1,12 +1,22 @@
-#ifndef _DATA_STRUCT_
-#define _DATA_STRUCT_
+#ifndef _DATA_STRUCTURE_
+#define _DATA_STRUCTURE_
 
 #include <iostream>
 #include <cstring>
 #include <vector>
 #include <fstream>
+#include <ctime>
+#include <ctime>
+#include <sstream>
 
 using namespace std;
+
+#define CLASS_PATH "..database/data_class.csv"
+#define PRESENCE_PATH "../database/data_presence.csv"
+#define SCORE_PATH "../database/data_score.csv"
+#define COURSE_PATH "../database/data_course.csv"
+#define USER_PATH "../database/data_user.csv"
+#define COURSE_SCHEDULE_PATH "../database/data_course_schedule.csv"
 
 enum UserType
 {
@@ -28,7 +38,7 @@ struct User
 struct CourseSchedule
 {
 	string courseCode,
-			startAt, // hh:mm
+			startAt,    // hh:mm
 			endAt,			// hh:mm
 			from,				// dd/mm
 			to;					// dd/mm
@@ -45,7 +55,7 @@ struct Course
 	int semester;
 };
 
-struct Persense
+struct Presense
 {
 	string courseCode,
 			year,
@@ -88,8 +98,8 @@ struct vCourse {
 	vector<Course> CourseList;
 };
 
-struct vPersense {
-	vector<Persense> PersenseList;
+struct vPresense {
+	vector<Presense> PresenseList;
 };
 
 struct vScore {

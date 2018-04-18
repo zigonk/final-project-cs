@@ -3,12 +3,13 @@
 string modifyString(string &s)
 {
   string tmp = "";
-  while (s[0] != ',')
+  while (s.length() != 0 && s[0] != ',')
   {
+    if (s[0] == '\r') break;
     tmp = tmp + s[0];
     s.erase(0, 1);
   }
-  s.erase(0, 1); // erase the remaining comma.
+  if (s.length() != 0) s.erase(0, 1); // erase the remaining comma.
   return tmp;
 }
 
@@ -20,7 +21,7 @@ int toNumber(string s)
   return res;
 }
 
-void readUserList(char PATH[], vUser &UL)
+void readUserList(const char *PATH, vUser &UL)
 {
   ifstream fin;
   fin.open(PATH);
@@ -32,7 +33,6 @@ void readUserList(char PATH[], vUser &UL)
   string s;
   while (getline(fin, s))
   {
-    s = s + ',';
     User tmp;
     tmp.username = modifyString(s);
     tmp.fullname = modifyString(s);
@@ -52,7 +52,7 @@ void readUserList(char PATH[], vUser &UL)
   fin.close();
 }
 
-void readClassList(char PATH[], vClass &CL)
+void readClassList(const char *PATH, vClass &CL)
 {
   ifstream fin;
   fin.open(PATH);
@@ -64,7 +64,6 @@ void readClassList(char PATH[], vClass &CL)
   string s;
   while (getline(fin, s))
   {
-    s = s + ',';
     Class tmp;
     tmp.classCode = modifyString(s);
     CL.ClassList.push_back(tmp);
@@ -72,7 +71,7 @@ void readClassList(char PATH[], vClass &CL)
   fin.close();
 }
 
-void readPresenseList(char PATH[], vPersense &PL)
+void readPresenseList(const char *PATH, vPresense &PL)
 {
   ifstream fin;
   fin.open(PATH);
@@ -84,19 +83,18 @@ void readPresenseList(char PATH[], vPersense &PL)
   string s;
   while (getline(fin, s))
   {
-    s = s + ',';
-    Persense tmp;
+    Presense tmp;
     tmp.courseCode = modifyString(s);
     tmp.year = modifyString(s);
     tmp.semester = toNumber(modifyString(s));
     tmp.studentID = modifyString(s);
     tmp.week = toNumber(modifyString(s));
-    PL.PersenseList.push_back(tmp);
+    PL.PresenseList.push_back(tmp);
   }
   fin.close();
 }
 
-void readScoreList(char PATH[], vScore &SL)
+void readScoreList(const char *PATH, vScore &SL)
 {
   ifstream fin;
   fin.open(PATH);
@@ -108,7 +106,6 @@ void readScoreList(char PATH[], vScore &SL)
   string s;
   while (getline(fin, s))
   {
-    s = s + ',';
     Score tmp;
     tmp.courseCode = modifyString(s);
     tmp.year = modifyString(s);
@@ -124,7 +121,7 @@ void readScoreList(char PATH[], vScore &SL)
   fin.close();
 }
 
-void readCourseList(char PATH[], vCourse &CL)
+void readCourseList(const char *PATH, vCourse &CL)
 {
   ifstream fin;
   fin.open(PATH);
@@ -149,7 +146,7 @@ void readCourseList(char PATH[], vCourse &CL)
   fin.close();
 }
 
-void readCourseScheduleList(char PATH[], vCourseSchedule &CSL)
+void readCourseScheduleList(const char *PATH, vCourseSchedule &CSL)
 {
   ifstream fin;
   fin.open(PATH);
@@ -174,13 +171,13 @@ void readCourseScheduleList(char PATH[], vCourseSchedule &CSL)
   fin.close();
 }
 
-void writeUserList(char PATH[], vUser &UL)
+void writeUserList(const char *PATH, vUser &UL)
 {
   ofstream fout;
   fout.open(PATH);
   if (!fout.is_open())
   {
-    cout << "Erorr ! Can't write to the file !" << endl;
+    cout << "Error ! Can't write to the file !" << endl;
     return;
   }
   for (int i = 0; i < UL.UserList.size(); ++i)
@@ -196,13 +193,13 @@ void writeUserList(char PATH[], vUser &UL)
   fout.close();
 }
 
-void writeClassList(char PATH[], vClass &CL)
+void writeClassList(const char *PATH, vClass &CL)
 {
   ofstream fout;
   fout.open(PATH);
   if (!fout.is_open())
   {
-    cout << "Erorr ! Can't write to the file !";
+    cout << "Error ! Can't write to the file !";
     return;
   }
   for (int i = 0; i < CL.ClassList.size(); ++i)
@@ -212,7 +209,7 @@ void writeClassList(char PATH[], vClass &CL)
   fout.close();
 }
 
-void writePresenseList(char PATH[], vPersense &PL)
+void writePresenseList(const char *PATH, vPresense &PL)
 {
   ofstream fout;
   fout.open(PATH);
@@ -221,18 +218,18 @@ void writePresenseList(char PATH[], vPersense &PL)
     cout << "Erorr ! Can't write to the file !";
     return;
   }
-  for (int i = 0; i < PL.PersenseList.size(); ++i)
+  for (int i = 0; i < PL.PresenseList.size(); ++i)
   {
-    fout << PL.PersenseList[i].courseCode << ',';
-    fout << PL.PersenseList[i].year << ',';
-    fout << PL.PersenseList[i].semester << ',';
-    fout << PL.PersenseList[i].studentID << ',';
-    fout << PL.PersenseList[i].week << '\n';
+    fout << PL.PresenseList[i].courseCode << ',';
+    fout << PL.PresenseList[i].year << ',';
+    fout << PL.PresenseList[i].semester << ',';
+    fout << PL.PresenseList[i].studentID << ',';
+    fout << PL.PresenseList[i].week << '\n';
   }
   fout.close();
 }
 
-void writeScoreList(char PATH[], vScore &SL)
+void writeScoreList(const char *PATH, vScore &SL)
 {
   ofstream fout;
   fout.open(PATH);
@@ -250,12 +247,13 @@ void writeScoreList(char PATH[], vScore &SL)
     fout << SL.ScoreList[i].midtermScore << ',';
     fout << SL.ScoreList[i].labScore << ',';
     fout << SL.ScoreList[i].finalScore << ',';
+    fout << SL.ScoreList[i].bonusScore << ',';
     fout << SL.ScoreList[i].totalScore << '\n';
   }
   fout.close();
 }
 
-void writeCourseList(char PATH[], vCourse &CL)
+void writeCourseList(const char *PATH, vCourse &CL)
 {
   ofstream fout;
   fout.open(PATH);
