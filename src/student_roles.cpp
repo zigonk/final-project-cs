@@ -41,9 +41,9 @@ void checkIn(User &loginUser) {
 	vPresense PL;
 	vCourse CL;
 	vCourseSchedule CSL;
-	readPresenseList("../database/data_presence.csv", PL);
-	readCourseList("../database/data_course.csv", CL);
-	readCourseScheduleList("../database/data_course_schedule.csv", CSL);
+	readPresenseList(PRESENCE_PATH, PL);
+	readCourseList(COURSE_PATH, CL);
+	readCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
 
 	Presense newCheckIn;
 	newCheckIn.studentID = loginUser.username;
