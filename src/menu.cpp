@@ -1,259 +1,356 @@
 #include "menu.h"
 
-void login(User &loginUser) {
+void login(User &loginUser)
+{
 	vUser UL;
 	readUserList(USER_PATH, UL);
-	while (loginUser.username.empty()) {
+	while (loginUser.username.empty())
+	{
 		string username, password;
 		cout << "Input your username:" << endl;
-		getline(cin, username);
+		cin >> username;
 		cout << "Input your password:" << endl;
-		getline(cin, password);
-		for (auto &i : UL.UserList) {
-			if (i.username == username && i.password == password) {
+		cin >> password;
+		for (auto &i : UL.UserList)
+		{
+			if (i.username == username && i.password == password)
+			{
 				loginUser = i;
 				cout << "Login successfully"
-				     << "\n\n";
+						 << "\n\n";
 				break;
 			}
 		}
 	}
 }
 
-void showRoleList(User &loginUser) {
-	switch (loginUser.uType) {
-		case ACADEMIC_STAFF: {
-			cout << "6. Import students of a class from a csv file " << endl;
-			cout << "7. Add a new student to a class " << endl;
-			cout << "8. Edit an existing student " << endl;
-			cout << "9. Remove a student" << endl;
-			cout << "10. Change students from class A to class B" << endl;
-			cout << "11. Add a new empty class" << endl;
-			cout << "12. View list of classes" << endl;
-			cout << "13. View list of students in a class" << endl;
-			cout << "14. Import courses from a csv file" << endl;
-			cout << "15. Add a new course" << endl;
-			cout << "16. Edit an existing course" << endl;
-			cout << "17. Remove a course" << endl;
-			cout << "18. View list of courses" << endl;
-			cout << "19. Import courses’ schedules from a csv file" << endl;
-			cout << "20. Add a course’s schedule" << endl;
-			cout << "21. Edit a course’s schedule (remember to check collided cases)" << endl;
-			cout << "22. Remove a course’s schedule" << endl;
-			cout << "23. View list of schedules." << endl;
-			cout << "24. Search and view attendance list of a course" << endl;
-			cout << "25. Export attendance list to a csv file" << endl;
-			cout << "26. Search and view scoreboard of a course" << endl;
-			cout << "27. Export a scoreboard to a csv file" << endl;
+void showRoleList(User &loginUser)
+{
+	while (true)
+	{
+		cout << endl;
+		switch (loginUser.uType)
+		{
+		case ACADEMIC_STAFF:
+		{
+			cout << "1. Import students of a class from a csv file " << endl;
+			cout << "2. Add a new student to a class " << endl;
+			cout << "3. Edit an existing student " << endl;
+			cout << "4. Remove a student" << endl;
+			cout << "5. Change students from class A to class B" << endl;
+			cout << "6. Add a new empty class" << endl;
+			cout << "7. View list of classes" << endl;
+			cout << "8. View list of students in a class" << endl;
+			cout << "9. Import courses from a csv file" << endl;
+			cout << "10. Add a new course" << endl;
+			cout << "11. Edit an existing course" << endl;
+			cout << "12. Remove a course" << endl;
+			cout << "13. View list of courses" << endl;
+			cout << "14. Import courses’ schedules from a csv file" << endl;
+			cout << "15. Add a course’s schedule" << endl;
+			cout << "16. Edit a course’s schedule (remember to check collided cases)" << endl;
+			cout << "17. Remove a course’s schedule" << endl;
+			cout << "18. View list of schedules." << endl;
+			cout << "19. Search and view attendance list of a course" << endl;
+			cout << "20. Export attendance list to a csv file" << endl;
+			cout << "21. Search and view scoreboard of a course" << endl;
+			cout << "22. Export a scoreboard to a csv file" << endl;
+			cout << "23. Return" << endl;
 			break;
 		}
-		case LECTURER: {
-			cout << "28. Import scoreboard of a course (midterm, final, lab, bonus)" << endl;
-			cout << "29. Edit grade of a student" << endl;
-			cout << "30. View a scoreboard" << endl;
+		case LECTURER:
+		{
+			cout << "1. Import scoreboard of a course (midterm, final, lab, bonus)" << endl;
+			cout << "2. Edit grade of a student" << endl;
+			cout << "3. View a scoreboard" << endl;
+			cout << "4. Return" << endl;
 			break;
 		}
-		case STUDENT: {
-			cout << "31. Check-in." << endl;
-			cout << "32. View check-in result" << endl;
-			cout << "33. View his/her scores of a course" << endl;
-			cout << "34. View schedules" << endl;
+		case STUDENT:
+		{
+			cout << "1. Check-in." << endl;
+			cout << "2. View check-in result" << endl;
+			cout << "3. View his/her scores of a course" << endl;
+			cout << "4. View schedules" << endl;
+			cout << "5. Return" << endl;
 			break;
 		}
-	}
-	//check ACADEMIC_STAFF
-	if (loginUser.uType == ACADEMIC_STAFF) {
-		int choice = 0;
-		do {
-			cout << "What do you want to do:";
-			cin >> choice;
-			if (choice < 6 || choice > 27) {
-				cout << "You don't have permission." << endl;
-				char c;
-				do {
-					cout << "Do you want to try again (y/n):";
-					cin >> c;
-				} while (tolower(c) != 'y' && tolower(c) != 'n');
-				if (tolower(c) == 'n') return;
-
-			}
-		} while (choice < 6 || choice > 27);
-		switch (choice) {
-        case 6: {
-            //chua lam
-            break;
-        }
-        case 7: {
-            addANewStudent();
-            break;
-        }
-        case 8: {
-            editAnExistingStudent();
-            break;
-        }
-        case 9: {
-            removeAStudent();
-            break;
-        }
-        case 10: {
-            changeStudentFromClassAToClassB();
-            break;
-        }
-        case 11: {
-            addANewEmptyClass();
-            break;
-        }
-        case 12: {
-            viewListOfClass();
-            break;
-        }
-        case 13: {
-            viewListOfStudentInAClass();
-            break;
-        }
-        case 14: {
-            importCourses();
-            break;
-        }
-        case 15: {
-            addANewCourse();
-            break;
-        }
-        case 16: {
-            editAnCourse();
-            break;
-        }
-        case 17: {
-            removeACourse();
-            break;
-        }
-        case 18: {
-            viewListOfACourse();
-            break;
-        }
-        case 19: {
-            importCourses();
-            break;
-        }
-        case 20: {
-            addACourseSchedule();
-            break;
-        }
-        case 21: {
-            //editACourseSchedule();
-            break;
-        }
-        case 22: {
-            removeACourseSchedule();
-            break;
-        }
-        case 23: {
-            viewListOfCourseSchedule();
-            break;
-        }
-        case 24: {
-            searchAndViewAttendaceList();
-            break;
-        }
-        case 25: {
-            exportAttendenceList();
-            break;
-        }
-        case 26: {
-            searchAndViewScoreboard();
-            break;
-        }
-        case 27:{
-            exportScoreBoard();
-            break;
-        }
-        default:
+		}
+		//check ACADEMIC_STAFF
+		if (loginUser.uType == ACADEMIC_STAFF)
+		{
+			int choice = 0;
+			do
+			{
+				cout << "What do you want to do:";
+				cin >> choice;
+				if (choice < 1 || choice > 23)
+				{
+					cout << "You don't have permission." << endl;
+					char c;
+					do
+					{
+						cout << "Do you want to try again (y/n):";
+						cin >> c;
+					} while (tolower(c) != 'y' && tolower(c) != 'n');
+					if (tolower(c) == 'n')
+						return;
+				}
+			} while (choice < 1 || choice > 23);
+			switch (choice)
+			{
+			case 1:
+			{
+				importStudentOfClass();
 				break;
+			}
+			case 2:
+			{
+				addANewStudent();
+				break;
+			}
+			case 3:
+			{
+				editAnExistingStudent();
+				break;
+			}
+			case 4:
+			{
+				removeAStudent();
+				break;
+			}
+			case 5:
+			{
+				changeStudentFromClassAToClassB();
+				break;
+			}
+			case 6:
+			{
+				addANewEmptyClass();
+				break;
+			}
+			case 7:
+			{
+				viewListOfClass();
+				break;
+			}
+			case 8:
+			{
+				viewListOfStudentInAClass();
+				break;
+			}
+			case 9:
+			{
+				importCourses();
+				break;
+			}
+			case 10:
+			{
+				addANewCourse();
+				break;
+			}
+			case 11:
+			{
+				editAnCourse();
+				break;
+			}
+			case 12:
+			{
+				removeACourse();
+				break;
+			}
+			case 13:
+			{
+				viewListOfACourse();
+				break;
+			}
+			case 14:
+			{
+				importCourses();
+				break;
+			}
+			case 15:
+			{
+				addACourseSchedule();
+				break;
+			}
+			case 16:
+			{
+				editACourseSchedule();
+				break;
+			}
+			case 17:
+			{
+				removeACourseSchedule();
+				break;
+			}
+			case 18:
+			{
+				viewListOfCourseSchedule();
+				break;
+			}
+			case 19:
+			{
+				searchAndViewAttendaceList();
+				break;
+			}
+			case 20:
+			{
+				exportAttendenceList();
+				break;
+			}
+			case 21:
+			{
+				searchAndViewScoreboard();
+				break;
+			}
+			case 22:
+			{
+				exportScoreBoard();
+				break;
+			}
+			default:
+				return;
+			}
 		}
-	} else if (loginUser.uType == LECTURER) {
-		int choice = 0;
-		cout << "What do you want to do: ";
-		cin >> choice;
-		switch (choice) {
-			case 1: {
+		else if (loginUser.uType == LECTURER)
+		{
+			int choice = 0;
+			do
+			{
+				cout << "What do you want to do:";
+				cin >> choice;
+				if (choice < 1 || choice > 4)
+				{
+					cout << "You don't have permission." << endl;
+					char c;
+					do
+					{
+						cout << "Do you want to try again (y/n):";
+						cin >> c;
+					} while (tolower(c) != 'y' && tolower(c) != 'n');
+					if (tolower(c) == 'n')
+						return;
+				}
+			} while (choice < 1 || choice > 4);
+			switch (choice)
+			{
+			case 1:
+			{
 				importScoreBoard(loginUser);
 				break;
 			}
-			case 2: {
+			case 2:
+			{
 				editGradeOfStudent(loginUser);
 				break;
 			}
-			case 3: {
+			case 3:
+			{
 				viewScoreBoard(loginUser);
 				break;
 			}
-			default: break;
+			default:
+				return;
+			}
 		}
-	} else if (loginUser.uType == STUDENT) {
-		int choice = 0;
-		cout << "What do you want to do:";
-		cin >> choice;
-		switch (choice) {
-			case 31: {
+		else if (loginUser.uType == STUDENT)
+		{
+			int choice = 0;
+			do
+			{
+				cout << "What do you want to do:";
+				cin >> choice;
+				if (choice < 1 || choice > 5)
+				{
+					cout << "You don't have permission." << endl;
+					char c;
+					do
+					{
+						cout << "Do you want to try again (y/n):";
+						cin >> c;
+					} while (tolower(c) != 'y' && tolower(c) != 'n');
+					if (tolower(c) == 'n')
+						return;
+				}
+			} while (choice < 1 || choice > 5);
+			cin >> choice;
+			switch (choice)
+			{
+			case 1:
+			{
 				checkIn(loginUser);
 				break;
 			}
-			case 32: {
+			case 2:
+			{
 				viewCheckInResult(loginUser);
 				break;
 			}
-			case 33: {
+			case 3:
+			{
 				viewScoreOfACourse(loginUser);
 				break;
 			}
-			case 34: {
+			case 4:
+			{
 				viewSchedule(loginUser);
 				break;
 			}
-			default: {
-				break;
+			default:
+			{
+				return;
+			}
 			}
 		}
 	}
 }
 
-void viewInfo(User loginUser) {
+void viewInfo(User loginUser)
+{
 	cout << "Info of your user" << endl;
 	cout << "Username: " << loginUser.username << endl;
 	cout << "Fullname: " << loginUser.fullname << endl;
 	cout << "Email: " << loginUser.email << endl;
 	cout << "Mobile phone: " << loginUser.mobilePhone << endl;
 	cout << "Type: ";
-	switch (loginUser.uType) {
-		case ACADEMIC_STAFF: {
-			cout << "Academic Staff" << endl;
-			break;
-		}
-		case STUDENT: {
-			cout << "Student" << endl;
-			break;
-		}
-		case LECTURER: {
-			cout << "Lecturer" << endl;
-			break;
-		}
+	switch (loginUser.uType)
+	{
+	case ACADEMIC_STAFF:
+	{
+		cout << "Academic Staff" << endl;
+		break;
+	}
+	case STUDENT:
+	{
+		cout << "Student" << endl;
+		break;
+	}
+	case LECTURER:
+	{
+		cout << "Lecturer" << endl;
+		break;
+	}
 	}
 	cout << "Password: " << loginUser.password << endl;
 	cout << "Class: " << loginUser.classCode << "\n\n";
 }
 
-void changePassword(User &loginUser) {
+void changePassword(User &loginUser)
+{
 	string oldPassword, newPassword;
 	cout << "Please input your old password:";
 	cin >> oldPassword;
 	cout << "Please input your new password:";
 	cin >> newPassword;
-	while (oldPassword != loginUser.password) {
+	while (oldPassword != loginUser.password)
+	{
 		cout << "Your password is wrong." << endl;
 		char choice;
 		cout << "Do you want to try again (y/n):";
 		cin >> choice;
-		if (tolower(choice) == 'n') {
+		if (tolower(choice) == 'n')
+		{
 			return;
 		}
 		cout << "Please input your old password:";
@@ -264,11 +361,18 @@ void changePassword(User &loginUser) {
 	loginUser.password = newPassword;
 	vUser UL;
 	readUserList(USER_PATH, UL);
-	for (auto &i : UL.UserList) {
-		if (i.username == loginUser.username) {
+	for (auto &i : UL.UserList)
+	{
+		if (i.username == loginUser.username)
+		{
 			i.password = loginUser.password;
 			break;
 		}
 	}
 	writeUserList(USER_PATH, UL);
+}
+
+void logout(User &loginUser)
+{
+	loginUser.username = "";
 }

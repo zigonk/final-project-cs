@@ -144,7 +144,7 @@ void viewSchedule(User &loginUser) {
 						cout << "Course code: " << j.courseCode << '\n';
 						cout << "From: " << j.from << '\n';
 						cout << "To: " << j.to << '\n';
-						cout << "Day of week: " << j.dayOfWeek << "\n\n";
+						cout << "Day of week: " << week[j.dayOfWeek] << "\n\n";
 					}
 			}
 		}

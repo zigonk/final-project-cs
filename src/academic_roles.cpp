@@ -2,10 +2,21 @@
 
 void importStudentOfClass()
 {
+	char PATH[100];
+	vUser UL;
+	readUserList(USER_PATH, UL);
+	vUser newUL;
+	readUserList(PATH, newUL);
+	vClass CL;
+	readClassList(CLASS_PATH, CL);
+	Class newClass;
+	newClass.classCode = newUL.UserList[0].classCode;
+	CL.ClassList.push_back(newClass);
+	for (auto &i : newUL.UserList)
+		UL.UserList.push_back(i);
+	writeUserList(USER_PATH, UL);
 }
 
-//support function 14
-//function 14
 void importCourses()
 {
 	char PATH[100];
@@ -26,6 +37,7 @@ void importCourses()
 void addANewStudent()
 {
 	string s;
+	char c;
 	vUser UL;
 	readUserList(USER_PATH, UL);
 	User tmp;
@@ -35,6 +47,7 @@ void addANewStudent()
 	tmp.username = s;
 	cout << "Enter full name: ";
 	getline(cin, s);
+	getline(cin, s);
 	tmp.fullname = s;
 	cout << "Enter email: ";
 	cin >> s;
@@ -43,7 +56,7 @@ void addANewStudent()
 	cin >> s;
 	tmp.mobilePhone = s;
 	cout << "Enter password: ";
-	getline(cin, s);
+	cin >> s;
 	tmp.password = s;
 	cout << "Enter class code: ";
 	cin >> s;
@@ -65,7 +78,31 @@ void editAnExistingStudent()
 		if (i.username == id)
 		{
 			exist = true;
-			pUser = &i;
+			string s;
+			char c;
+			cout << "Last info of this student:\n";
+			cout << "Username: " << i.username << endl;
+			cout << "Fullname: " << i.fullname << endl;
+			cout << "Email: " << i.email << endl;
+			cout << "Mobile phone: " << i.mobilePhone << endl;
+			cout << "Class: " << i.classCode << "\n\n";
+
+			cout << "Enter new student ID: ";
+			cin >> s;
+			i.username = s;
+			cout << "Enter new student name: ";
+			getline(cin, s);
+			getline(cin, s);
+			i.fullname = s;
+			cout << "Enter new student email address: ";
+			cin >> s;
+			i.email = s;
+			cout << "Enter mobile phone: ";
+			cin >> s;
+			i.mobilePhone = s;
+			cout << "Enter new class code: ";
+			cin >> s;
+			i.classCode = s;
 			break;
 		}
 	}
@@ -74,22 +111,6 @@ void editAnExistingStudent()
 		cout << "There is no such student ID ";
 		return;
 	}
-	string s;
-	cin >> s;
-	cout << "Enter new student ID: ";
-	pUser->username = s;
-	cout << "Enter new student name: ";
-	getline(cin, s);
-	pUser->fullname = s;
-	cout << "Enter new student email address: ";
-	cin >> s;
-	pUser->email = s;
-	cout << "Enter mobile phone: ";
-	cin >> s;
-	pUser->mobilePhone = s;
-	cout << "Enter new Class code: ";
-	cin >> s;
-	pUser->classCode = s;
 	writeUserList(USER_PATH, UL);
 }
 
@@ -186,8 +207,8 @@ void viewListOfStudentInAClass()
 	cout << "Here is the student ID of student go for that class: ";
 	for (auto &i : UL.UserList)
 	{
-		if (i.classCode == class_)
-			cout << i.username << " ";
+		if (i.classCode == class_ && i.uType == STUDENT)
+			cout << i.username << endl;
 	}
 }
 
@@ -203,7 +224,8 @@ void addANewCourse()
 	cout << "Enter year: ";
 	cin >> s;
 	tmp.year = s;
-	cout << "Enter course name";
+	cout << "Enter course name: ";
+	getline(cin, s);
 	getline(cin, s);
 	tmp.courseName = s;
 	cout << "Enter the lecture user name: ";
@@ -312,16 +334,16 @@ void addACourseSchedule()
 	tmp.courseCode = s;
 	cout << "Enter the day it start at: ";
 	cin >> s;
-	tmp.startAt = s;
-	cout << "Enter the day it end at";
-	getline(cin, s);
-	tmp.endAt = s;
-	cout << "Enter the time it starts: ";
-	cin >> s;
 	tmp.from = s;
-	cout << "Enter the time it ends: ";
+	cout << "Enter the day it end at:";
 	cin >> s;
 	tmp.to = s;
+	cout << "Enter the time it starts: ";
+	cin >> s;
+	tmp.startAt = s;
+	cout << "Enter the time it ends: ";
+	cin >> s;
+	tmp.endAt = s;
 	int day;
 	cout << "Enter the day of week have this course: ";
 	cin >> day;
@@ -329,41 +351,108 @@ void addACourseSchedule()
 	CSL.CourseScheduleList.push_back(tmp);
 }
 
-//void editACourseSchedule(vCourseSchedule &CourseScheduleList) {
-//	int index = -1;
-//	cout << "Enter course code of the course you want to edit: ";
-//	string cc;
-//	cin >> cc;
-//	for (int i = 0; i < CourseScheduleList.size(); i++)
-//		if (CourseScheduleList[i].courseCode == cc) {
-//			index = i;
-//			break;
-//		}
-//	if (index == -1)
-//		cout << "There is no course with that course code !";
-//	else {
-//		string s;
-//		cout << "Enter course code: ";
-//		cin >> s;
-//		CourseScheduleList[index].courseCode = s;
-//		cout << "Enter the day it start at: ";
-//		cin >> s;
-//		CourseScheduleList[index].startAt = s;
-//		cout << "Enter the day it end at";
-//		getline(cin, s);
-//		CourseScheduleList[index].endAt = s;
-//		cout << "Enter the time it starts: ";
-//		cin >> s;
-//		CourseScheduleList[index].from = s;
-//		cout << "Enter the time it ends: ";
-//		cin >> s;
-//		CourseScheduleList[index].to = s;
-//		int day;
-//		cout << "Enter the day of week have this course: ";
-//		cin >> day;
-//		CourseScheduleList[index].dayOfWeek = day;
-//	}
-//}
+bool checkCollide(CourseSchedule CS, CourseSchedule CS1)
+{
+	vCourse CL;
+	readCourseList(COURSE_PATH, CL);
+	Course course1, course2;
+	for (int i = 0; i < CL.CourseList.size(); ++i)
+	{
+		if (CL.CourseList[i].courseCode == CS.courseCode)
+		{
+			course1 = CL.CourseList[i];
+		}
+		if (CL.CourseList[i].courseCode == CS1.courseCode)
+		{
+			course2 = CL.CourseList[i];
+		}
+	}
+	if (course1.classCode != course2.classCode || course1.year != course2.year)
+		return false;
+	if (CS.startAt <= CS1.endAt && CS.endAt >= CS1.startAt)
+	{
+		if (CS.dayOfWeek != CS1.dayOfWeek)
+			return false;
+		return (CS.from <= CS1.to && CS.to >= CS1.from);
+	}
+	else
+		return false;
+}
+
+void editACourseSchedule()
+{
+	vCourse CL;
+	vCourseSchedule CSL;
+	string courseCode, classCode = "-1";
+	readCourseList(COURSE_PATH, CL);
+	readCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
+	cout << "Input course code you want to edit schedule:";
+	cin >> courseCode;
+	for (auto &i : CL.CourseList)
+	{
+		if (i.courseCode == courseCode)
+		{
+			classCode = i.classCode;
+		}
+	}
+	if (classCode == "-1")
+	{
+		cout << "There is no course with that course code !" << endl;
+		return;
+	}
+	for (int i = 0; i < CSL.CourseScheduleList.size(); ++i)
+	{
+		CourseSchedule CS = CSL.CourseScheduleList[i];
+		if (CS.courseCode == courseCode)
+		{
+			cout << "Course code: " << CS.courseCode << '\n';
+			cout << "Start at: " << CS.startAt << '\n';
+			cout << "End at: " << CS.endAt << '\n';
+			cout << "From: " << CS.from << '\n';
+			cout << "To: " << CS.to << '\n';
+			cout << "Day of week: " << week[CS.dayOfWeek] << "\n\n";
+			char choice;
+			cout << "Do you want edit this schedule (y/n):";
+			cin >> choice;
+			while (choice == 'y')
+			{
+				cout << "Start at (hh:mm): ";
+				cin >> CS.startAt;
+				cout << "End at (hh:mm): ";
+				cin >> CS.endAt;
+				cout << "From (mm/dd): ";
+				cin >> CS.from;
+				cout << "To (mm/dd): ";
+				cin >> CS.to;
+				cout << "Day of week [0-6]->[Sun->Sat]: ";
+				cin >> CS.dayOfWeek;
+				bool xet = true;
+				for (int j = 0; j < CSL.CourseScheduleList.size(); ++j)
+				{
+					if (i == j)
+						continue;
+					if (checkCollide(CS, CSL.CourseScheduleList[j]))
+					{
+						cout << "Your new course schedule collide with other course schedule" << endl;
+						xet = false;
+						break;
+					}
+				}
+				if (xet)
+				{
+					CSL.CourseScheduleList[i] = CS;
+					break;
+				}
+				else
+				{
+					cout << "Do you want to edit again (y/n):";
+					cin >> choice;
+				}
+			}
+		}
+	}
+	writeCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
+}
 
 void removeACourseSchedule()
 {
@@ -380,7 +469,7 @@ void removeACourseSchedule()
 			break;
 		}
 	if (index == -1)
-		cout << "There is no course with that course code !";
+		cout << "There is no course with that course code !" << endl;
 	else
 	{
 		CSL.CourseScheduleList.erase(CSL.CourseScheduleList.begin() + index);
@@ -421,7 +510,7 @@ void searchAndViewAttendaceList()
 		}
 	if (index == -1)
 	{
-		cout << "There is no course with that course code !";
+		cout << "There is no course with that course code !" << endl;
 		return;
 	}
 	for (auto &i : PL.PresenseList)
@@ -442,7 +531,7 @@ void searchAndViewScoreboard()
 	vCourse CL;
 	readScoreList(SCORE_PATH, SL);
 	readCourseList(COURSE_PATH, CL);
-	cout << "Enter course code of the course you want to view the attendance list: ";
+	cout << "Enter course code of the course you want to view the scoreboard: ";
 	string cc;
 	cin >> cc;
 	int index = -1;
@@ -488,7 +577,7 @@ void exportAttendenceList()
 void exportScoreBoard()
 {
 	vScore SL;
-	readScoreList(SCORE_PATH, SL); 
+	readScoreList(SCORE_PATH, SL);
 	cout << "Please input the path of the file you want to export:";
 	char PATH[100];
 	cin.getline(PATH, 100);

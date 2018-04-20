@@ -30,7 +30,7 @@ void showMenu(User &loginUser) {
     }
     case 4:
     {
-      //logout(loginUser);
+      logout(loginUser);
       break;
     }
   }

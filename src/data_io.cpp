@@ -274,7 +274,7 @@ void writeCourseList(const char *PATH, vCourse &CL)
   fout.close();
 }
 
-void writeCourseScheduleList(char PATH[], vCourseSchedule &CSL)
+void writeCourseScheduleList(const char *PATH, vCourseSchedule &CSL)
 {
   ofstream fout;
   fout.open(PATH);

@@ -16,7 +16,7 @@ void writeUserList(const char *PATH, vUser &User);
 void writeClassList(const char *PATH, vClass &CLassList);
 void writeCourseList(const char *PATH, vCourse &CourseList);
 void writePresenseList(const char *PATH, vPresense &PresenseList);
-void writeCourseScheduleList(char PATH[], vCourseSchedule &CourseScheduleList);
+void writeCourseScheduleList(const char *PATH, vCourseSchedule &CourseScheduleList);
 void writeScoreList(const char *PATH, vScore &ScoreList);
 
 #endif

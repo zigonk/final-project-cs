@@ -3,6 +3,8 @@
 
 #include "data_io.h"
 
+void importStudentOfClass();  
+
 void importCourses();
 void removeACourse();
 

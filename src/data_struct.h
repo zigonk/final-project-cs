@@ -11,18 +11,19 @@
 
 using namespace std;
 
-#define CLASS_PATH "..database/data_class.csv"
+#define CLASS_PATH "../database/data_class.csv"
 #define PRESENCE_PATH "../database/data_presence.csv"
 #define SCORE_PATH "../database/data_score.csv"
 #define COURSE_PATH "../database/data_course.csv"
 #define USER_PATH "../database/data_user.csv"
 #define COURSE_SCHEDULE_PATH "../database/data_course_schedule.csv"
+const string week[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
 enum UserType
 {
-	STUDENT,
 	ACADEMIC_STAFF,
 	LECTURER,
+	STUDENT,
 };
 struct User
 {
@@ -42,7 +43,7 @@ struct CourseSchedule
 			endAt,			// hh:mm
 			from,				// dd/mm
 			to;					// dd/mm
-	int dayOfWeek; 	// [0, 1, ..., 6] = [Mon, Tue, ..., Sunday];
+	int dayOfWeek; 	// [0, 1, ..., 6] = [Sun, Mon, Tue, ..., Sat];
 };
 
 struct Course
