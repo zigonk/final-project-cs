@@ -17,8 +17,8 @@ void importScoreBoard(User &loginUser) {
 	writeScoreList(SCORE_PATH, SL);
 }
 
-void editGradeOfStudent(User &loginUser) {
-
+void editGradeOfStudent(User &loginUser)
+{
 	vScore SL;
 	vCourse CL;
 	vUser UL;

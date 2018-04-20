@@ -10,7 +10,8 @@ void readCourseScheduleList(const char *PATH, vCourseSchedule &CourseScheduleLis
 void readPresenseList(const char *PATH, vPresense &PresenseList);
 void searchAndViewAttendaceList(vCourse &CourseList, vPresense &PersenseList);
 void readScoreList(const char *PATH, vScore &ScoreList);
-
+string modifyString(string &s);
+int toNumber(string s);
 void writeUserList(const char *PATH, vUser &User);
 void writeClassList(const char *PATH, vClass &CLassList);
 void writeCourseList(const char *PATH, vCourse &CourseList);

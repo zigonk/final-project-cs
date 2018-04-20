@@ -79,10 +79,95 @@ void showRoleList(User &loginUser) {
 			}
 		} while (choice < 6 || choice > 27);
 		switch (choice) {
-			case 6: {
-				//importStudentOfClass();
-			}
-			default:
+        case 6: {
+            //chua lam
+            break;
+        }
+        case 7: {
+            addANewStudent();
+            break;
+        }
+        case 8: {
+            editAnExistingStudent();
+            break;
+        }
+        case 9: {
+            removeAStudent();
+            break;
+        }
+        case 10: {
+            changeStudentFromClassAToClassB();
+            break;
+        }
+        case 11: {
+            addANewEmptyClass();
+            break;
+        }
+        case 12: {
+            viewListOfClass();
+            break;
+        }
+        case 13: {
+            viewListOfStudentInAClass();
+            break;
+        }
+        case 14: {
+            importCourses();
+            break;
+        }
+        case 15: {
+            addANewCourse();
+            break;
+        }
+        case 16: {
+            editAnCourse();
+            break;
+        }
+        case 17: {
+            removeACourse();
+            break;
+        }
+        case 18: {
+            viewListOfACourse();
+            break;
+        }
+        case 19: {
+            importCourses();
+            break;
+        }
+        case 20: {
+            addACourseSchedule();
+            break;
+        }
+        case 21: {
+            editACourseSchedule();
+            break;
+        }
+        case 22: {
+            removeACourseSchedule();
+            break;
+        }
+        case 23: {
+            viewListOfCourseSchedule();
+            break;
+        }
+        case 24: {
+            searchAndViewAttendaceList();
+            break;
+        }
+        case 25: {
+            writePresenseList();
+            break;
+        }
+        case 26: {
+            searchAndViewScoreboard();
+            break;
+        }
+        case 27:{
+            // chua lam
+            break;
+        }
+        default:
 				break;
 		}
 	} else if (loginUser.uType == LECTURER) {

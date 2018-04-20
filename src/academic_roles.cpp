@@ -5,24 +5,6 @@ void importStudentOfClass() {
 }
 
 //support function 14
-string modifyString(string &s) {
-	string tmp = "";
-	while (s.length() != 0 && s[0] != ',') {
-		if (s[0] == '\r') break;
-		tmp = tmp + s[0];
-		s.erase(0, 1);
-	}
-	if (s.length() != 0) s.erase(0, 1); // erase the remaining comma.
-	return tmp;
-}
-
-int toNumber(string s) {
-	int res = 0;
-	for (int i = 0; i < s.length(); ++i)
-		res = res * 10 + s[i] - '0';
-	return res;
-}
-
 //function 14
 void importCourses() {
 	char PATH[100];
