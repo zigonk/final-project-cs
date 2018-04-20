@@ -7,6 +7,7 @@ void importScoreBoard(User &loginUser) {
 	readScoreList(SCORE_PATH, SL);
 
 	cout << "Please input path of your scoreboard file:";
+	cin.ignore();
 	cin.getline(PATH, 100);
 
 	readScoreList(PATH, NSL);

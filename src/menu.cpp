@@ -303,6 +303,9 @@ void showRoleList(User &loginUser)
 			}
 			}
 		}
+		cout << "Press anykey to continue.";
+		cin.ignore();
+		cin.get();
 	}
 }
 

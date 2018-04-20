@@ -6,6 +6,9 @@ void importStudentOfClass()
 	vUser UL;
 	readUserList(USER_PATH, UL);
 	vUser newUL;
+	cout << "Please input path of your file you want to import:";
+	cin.ignore();
+	cin.getline(PATH,100);
 	readUserList(PATH, newUL);
 	vClass CL;
 	readClassList(CLASS_PATH, CL);
@@ -20,7 +23,8 @@ void importStudentOfClass()
 void importCourses()
 {
 	char PATH[100];
-	cout << "Please input path of file courses.csv:";
+	cout << "Please input path of file you want to import:";
+	cin.ignore();
 	cin.getline(PATH, 100);
 
 	vCourse newCL;
@@ -31,7 +35,7 @@ void importCourses()
 	{
 		CL.CourseList.push_back(i);
 	}
-	writeCourseList(PATH, CL);
+	writeCourseList(COURSE_PATH, CL);
 }
 
 void addANewStudent()
@@ -46,7 +50,7 @@ void addANewStudent()
 	cin >> s;
 	tmp.username = s;
 	cout << "Enter full name: ";
-	getline(cin, s);
+	cin.ignore();
 	getline(cin, s);
 	tmp.fullname = s;
 	cout << "Enter email: ";
@@ -91,7 +95,7 @@ void editAnExistingStudent()
 			cin >> s;
 			i.username = s;
 			cout << "Enter new student name: ";
-			getline(cin, s);
+			cin.ignore();
 			getline(cin, s);
 			i.fullname = s;
 			cout << "Enter new student email address: ";
@@ -225,7 +229,7 @@ void addANewCourse()
 	cin >> s;
 	tmp.year = s;
 	cout << "Enter course name: ";
-	getline(cin, s);
+	cin.ignore();
 	getline(cin, s);
 	tmp.courseName = s;
 	cout << "Enter the lecture user name: ";
@@ -332,20 +336,20 @@ void addACourseSchedule()
 	cout << "Enter course code: ";
 	cin >> s;
 	tmp.courseCode = s;
-	cout << "Enter the day it start at: ";
+	cout << "Enter the day it start at (mm/dd): ";
 	cin >> s;
 	tmp.from = s;
-	cout << "Enter the day it end at:";
+	cout << "Enter the day it end at (mm/dd):";
 	cin >> s;
 	tmp.to = s;
-	cout << "Enter the time it starts: ";
+	cout << "Enter the time it starts (hh:mm): ";
 	cin >> s;
 	tmp.startAt = s;
-	cout << "Enter the time it ends: ";
+	cout << "Enter the time it ends (hh:mm) ";
 	cin >> s;
 	tmp.endAt = s;
 	int day;
-	cout << "Enter the day of week have this course: ";
+	cout << "Enter the day of week have this course [0-6]==[Sun-Sat]: ";
 	cin >> day;
 	tmp.dayOfWeek = day;
 	CSL.CourseScheduleList.push_back(tmp);
@@ -570,6 +574,7 @@ void exportAttendenceList()
 	readPresenseList(PRESENCE_PATH, PL);
 	cout << "Please input the path of the file you want to export:";
 	char PATH[100];
+	cin.ignore();
 	cin.getline(PATH, 100);
 	writePresenseList(PATH, PL);
 }
@@ -580,6 +585,7 @@ void exportScoreBoard()
 	readScoreList(SCORE_PATH, SL);
 	cout << "Please input the path of the file you want to export:";
 	char PATH[100];
+	cin.ignore();
 	cin.getline(PATH, 100);
 	writeScoreList(PATH, SL);
 }
