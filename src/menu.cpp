@@ -140,7 +140,7 @@ void showRoleList(User &loginUser) {
             break;
         }
         case 21: {
-            editACourseSchedule();
+            //editACourseSchedule();
             break;
         }
         case 22: {
@@ -156,7 +156,7 @@ void showRoleList(User &loginUser) {
             break;
         }
         case 25: {
-            writePresenseList();
+            exportAttendenceList();
             break;
         }
         case 26: {
@@ -164,7 +164,7 @@ void showRoleList(User &loginUser) {
             break;
         }
         case 27:{
-            // chua lam
+            exportScoreBoard();
             break;
         }
         default:

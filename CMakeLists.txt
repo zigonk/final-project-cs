@@ -6,10 +6,6 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(src)
 
 add_executable(final_project_cs
-        database/data_course.csv
-        database/data_presence.csv
-        database/data_score.csv
-        database/data_user.csv
         src/academic_roles.cpp
         src/academic_roles.h
         src/data_io.cpp
@@ -23,5 +19,4 @@ add_executable(final_project_cs
         src/screen.cpp
         src/screen.h
         src/student_roles.cpp
-        src/student_roles.h
-        README.md)
+        src/student_roles.h)

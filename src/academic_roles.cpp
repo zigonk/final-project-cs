@@ -1,12 +1,13 @@
 #include "academic_roles.h"
 
-void importStudentOfClass() {
-
+void importStudentOfClass()
+{
 }
 
 //support function 14
 //function 14
-void importCourses() {
+void importCourses()
+{
 	char PATH[100];
 	cout << "Please input path of file courses.csv:";
 	cin.getline(PATH, 100);
@@ -15,13 +16,15 @@ void importCourses() {
 	readCourseList(PATH, newCL);
 	vCourse CL;
 	readCourseList(COURSE_PATH, CL);
-	for (auto &i:newCL.CourseList) {
+	for (auto &i : newCL.CourseList)
+	{
 		CL.CourseList.push_back(i);
 	}
 	writeCourseList(PATH, CL);
 }
 
-void addANewStudent() {
+void addANewStudent()
+{
 	string s;
 	vUser UL;
 	readUserList(USER_PATH, UL);
@@ -48,7 +51,8 @@ void addANewStudent() {
 	UL.UserList.push_back(tmp);
 }
 
-void editAnExistingStudent() {
+void editAnExistingStudent()
+{
 	vUser UL;
 	readUserList(USER_PATH, UL);
 	string id;
@@ -56,14 +60,17 @@ void editAnExistingStudent() {
 	cin >> id;
 	User *pUser = nullptr;
 	bool exist = false;
-	for (auto &i : UL.UserList) {
-		if (i.username == id) {
+	for (auto &i : UL.UserList)
+	{
+		if (i.username == id)
+		{
 			exist = true;
 			pUser = &i;
 			break;
 		}
 	}
-	if (!exist) {
+	if (!exist)
+	{
 		cout << "There is no such student ID ";
 		return;
 	}
@@ -86,7 +93,8 @@ void editAnExistingStudent() {
 	writeUserList(USER_PATH, UL);
 }
 
-void removeAStudent() {
+void removeAStudent()
+{
 	vUser UL;
 	readUserList(USER_PATH, UL);
 
@@ -94,13 +102,16 @@ void removeAStudent() {
 	cout << "Enter student ID you want to remove: ";
 	cin >> id;
 	int index = -1;
-	for (int i = 0; i < UL.UserList.size(); i++) {
-		if (UL.UserList[i].username == id) {
+	for (int i = 0; i < UL.UserList.size(); i++)
+	{
+		if (UL.UserList[i].username == id)
+		{
 			index = i;
 			break;
 		}
 	}
-	if (index == -1) {
+	if (index == -1)
+	{
 		cout << "There is no such student ID !";
 		return;
 	}
@@ -108,7 +119,8 @@ void removeAStudent() {
 	writeUserList(USER_PATH, UL);
 }
 
-void changeStudentFromClassAToClassB() {
+void changeStudentFromClassAToClassB()
+{
 	vUser UL;
 	readUserList(USER_PATH, UL);
 
@@ -120,13 +132,16 @@ void changeStudentFromClassAToClassB() {
 	cout << "Enter name of class you want to change to: ";
 	cin >> newClass;
 
-	for (auto &i : UL.UserList) {
-		if (i.username == studentID) i.classCode = newClass;
+	for (auto &i : UL.UserList)
+	{
+		if (i.username == studentID)
+			i.classCode = newClass;
 	}
 	writeUserList(USER_PATH, UL);
 }
 
-void addANewEmptyClass() {
+void addANewEmptyClass()
+{
 	vClass CL;
 	readClassList(CLASS_PATH, CL);
 	cout << "Enter class code of the new class: ";
@@ -138,14 +153,16 @@ void addANewEmptyClass() {
 	writeClassList(CLASS_PATH, CL);
 }
 
-void viewListOfClass() {
+void viewListOfClass()
+{
 	vClass CL;
 	readClassList(CLASS_PATH, CL);
 	for (auto &i : CL.ClassList)
 		cout << i.classCode << endl;
 }
 
-void viewListOfStudentInAClass() {
+void viewListOfStudentInAClass()
+{
 	vUser UL;
 	readUserList(USER_PATH, UL);
 	vClass CL;
@@ -154,23 +171,28 @@ void viewListOfStudentInAClass() {
 	string class_;
 	cin >> class_;
 	bool f = false;
-	for (auto &i : CL.ClassList) {
-		if (i.classCode == class_) {
+	for (auto &i : CL.ClassList)
+	{
+		if (i.classCode == class_)
+		{
 			f = true;
 		}
 	}
-	if (!f) {
+	if (!f)
+	{
 		cout << "There is no class with that name";
 		return;
 	}
 	cout << "Here is the student ID of student go for that class: ";
-	for (auto &i : UL.UserList) {
+	for (auto &i : UL.UserList)
+	{
 		if (i.classCode == class_)
 			cout << i.username << " ";
 	}
 }
 
-void addANewCourse() {
+void addANewCourse()
+{
 	vCourse CL;
 	readCourseList(COURSE_PATH, CL);
 	Course tmp;
@@ -198,7 +220,8 @@ void addANewCourse() {
 	writeCourseList(COURSE_PATH, CL);
 }
 
-void editAnCourse() {
+void editAnCourse()
+{
 	vCourse CL;
 	readCourseList(COURSE_PATH, CL);
 	int index = -1;
@@ -206,13 +229,15 @@ void editAnCourse() {
 	string cc;
 	cin >> cc;
 	for (int i = 0; i < CL.CourseList.size(); i++)
-		if (CL.CourseList[i].courseCode == cc) {
+		if (CL.CourseList[i].courseCode == cc)
+		{
 			index = i;
 			break;
 		}
 	if (index == -1)
 		cout << "There is no course with that course code !";
-	else {
+	else
+	{
 		string s;
 		cout << "Enter course code: ";
 		cin >> s;
@@ -237,7 +262,8 @@ void editAnCourse() {
 	writeCourseList(COURSE_PATH, CL);
 }
 
-void removeAnCourse() {
+void removeACourse()
+{
 	vCourse CL;
 	readCourseList(COURSE_PATH, CL);
 	int index = -1;
@@ -245,23 +271,26 @@ void removeAnCourse() {
 	string cc;
 	cin >> cc;
 	for (int i = 0; i < CL.CourseList.size(); i++)
-		if (CL.CourseList[i].courseCode == cc) {
+		if (CL.CourseList[i].courseCode == cc)
+		{
 			index = i;
 			break;
 		}
 	if (index == -1)
 		cout << "There is no course with that course code !";
-	else {
+	else
+	{
 		CL.CourseList.erase(CL.CourseList.begin() + index);
 	}
 	writeCourseList(COURSE_PATH, CL);
 }
 
-
-void viewListOfACourse() {
+void viewListOfACourse()
+{
 	vCourse CL;
 	readCourseList(COURSE_PATH, CL);
-	for (auto &i : CL.CourseList) {
+	for (auto &i : CL.CourseList)
+	{
 		cout << "Course code: " << i.courseCode << endl;
 		cout << "Year: " << i.year << endl;
 		cout << "Course name: " << i.courseName << endl;
@@ -272,7 +301,8 @@ void viewListOfACourse() {
 	}
 }
 
-void addACourseSchedule() {
+void addACourseSchedule()
+{
 	vCourseSchedule CSL;
 	readCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
 	CourseSchedule tmp;
@@ -335,8 +365,8 @@ void addACourseSchedule() {
 //	}
 //}
 
-
-void removeACourseSchedule() {
+void removeACourseSchedule()
+{
 	vCourseSchedule CSL;
 	readCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
 	int index = -1;
@@ -344,21 +374,25 @@ void removeACourseSchedule() {
 	string cc;
 	cin >> cc;
 	for (int i = 0; i < CSL.CourseScheduleList.size(); i++)
-		if (CSL.CourseScheduleList[i].courseCode == cc) {
+		if (CSL.CourseScheduleList[i].courseCode == cc)
+		{
 			index = i;
 			break;
 		}
 	if (index == -1)
 		cout << "There is no course with that course code !";
-	else {
+	else
+	{
 		CSL.CourseScheduleList.erase(CSL.CourseScheduleList.begin() + index);
 	}
 }
 
-void viewListOfCourseSchedule() {
+void viewListOfCourseSchedule()
+{
 	vCourseSchedule CSL;
 	readCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
-	for (auto &i : CSL.CourseScheduleList) {
+	for (auto &i : CSL.CourseScheduleList)
+	{
 		cout << "Course code: " << i.courseCode << endl;
 		cout << "Start at: " << i.startAt << endl;
 		cout << "End at: " << i.endAt << endl;
@@ -369,7 +403,8 @@ void viewListOfCourseSchedule() {
 	}
 }
 
-void searchAndViewAttendaceList() {
+void searchAndViewAttendaceList()
+{
 	vCourse CL;
 	vPresense PL;
 	readCourseList(COURSE_PATH, CL);
@@ -379,16 +414,20 @@ void searchAndViewAttendaceList() {
 	cin >> cc;
 	int index = -1;
 	for (int i = 0; i < CL.CourseList.size(); i++)
-		if (CL.CourseList[i].courseCode == cc) {
+		if (CL.CourseList[i].courseCode == cc)
+		{
 			index = i;
 			break;
 		}
-	if (index == -1) {
+	if (index == -1)
+	{
 		cout << "There is no course with that course code !";
 		return;
 	}
-	for (auto &i : PL.PresenseList) {
-		if (i.courseCode == cc) {
+	for (auto &i : PL.PresenseList)
+	{
+		if (i.courseCode == cc)
+		{
 			cout << "Year " << i.year << endl;
 			cout << "Student ID: " << i.studentID << endl;
 			cout << "Semester: " << i.semester << endl;
@@ -397,7 +436,8 @@ void searchAndViewAttendaceList() {
 	}
 }
 
-void searchAndViewScoreboard() {
+void searchAndViewScoreboard()
+{
 	vScore SL;
 	vCourse CL;
 	readScoreList(SCORE_PATH, SL);
@@ -407,23 +447,50 @@ void searchAndViewScoreboard() {
 	cin >> cc;
 	int index = -1;
 	for (int i = 0; i < CL.CourseList.size(); i++)
-		if (CL.CourseList[i].courseCode == cc) {
+		if (CL.CourseList[i].courseCode == cc)
+		{
 			index = i;
 			break;
 		}
-	if (index == -1) {
+	if (index == -1)
+	{
 		cout << "There is no course with that course code !";
 		return;
-	} else {
-		for (auto &i : SL.ScoreList) {
-			if (i.courseCode == cc) {
+	}
+	else
+	{
+		for (auto &i : SL.ScoreList)
+		{
+			if (i.courseCode == cc)
+			{
 				cout << "Student ID: " << i.studentID << '\n';
 				cout << "Midterm score: " << i.midtermScore << '\n';
 				cout << "Final score: " << i.finalScore << '\n';
 				cout << "Lab score: " << i.labScore << '\n';
 				cout << "Bonus score: " << i.bonusScore << '\n';
-				cout << "Total score: " << i.totalScore << '\n' << '\n';
+				cout << "Total score: " << i.totalScore << '\n'
+						 << '\n';
 			}
 		}
 	}
+}
+
+void exportAttendenceList()
+{
+	vPresense PL;
+	readPresenseList(PRESENCE_PATH, PL);
+	cout << "Please input the path of the file you want to export:";
+	char PATH[100];
+	cin.getline(PATH, 100);
+	writePresenseList(PATH, PL);
+}
+
+void exportScoreBoard()
+{
+	vScore SL;
+	readScoreList(SCORE_PATH, SL); 
+	cout << "Please input the path of the file you want to export:";
+	char PATH[100];
+	cin.getline(PATH, 100);
+	writeScoreList(PATH, SL);
 }

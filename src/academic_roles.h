@@ -3,11 +3,14 @@
 
 #include "data_io.h"
 
+void importCourses();
+void removeACourse();
+
 void addANewStudent();
 void editAnExistingStudent();
 void removeAStudent();
 
-void changeStudentsFromClassAToClassB();
+void changeStudentFromClassAToClassB();
 void addANewEmptyClass();
 void viewListOfClass();
 void viewListOfStudentInAClass();
@@ -24,6 +27,9 @@ void editACourseSchedule();
 void removeACourseSchedule();
 
 void viewListOfCourseSchedule();
+void exportAttendenceList();
 
 void searchAndViewAttendaceList();
+void searchAndViewScoreboard();
+void exportScoreBoard();
 #endif
