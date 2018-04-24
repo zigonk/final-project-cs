@@ -6,6 +6,7 @@
 void importStudentOfClass();  
 
 void importCourses();
+void importCourseSchedule();
 void removeACourse();
 
 void addANewStudent();

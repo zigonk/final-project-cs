@@ -44,7 +44,6 @@ void checkIn(User &loginUser) {
 	readPresenseList(PRESENCE_PATH, PL);
 	readCourseList(COURSE_PATH, CL);
 	readCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
-
 	Presense newCheckIn;
 	newCheckIn.studentID = loginUser.username;
 	time_t t = time(nullptr);
@@ -85,6 +84,7 @@ void checkIn(User &loginUser) {
 							}
 							PL.PresenseList.push_back(newCheckIn);
 							writePresenseList(PRESENCE_PATH, PL);
+							return;
 						}
 					}
 				}

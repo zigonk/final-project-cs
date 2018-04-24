@@ -5,6 +5,7 @@ void firstScreen(User &loginUser) {
 }
 
 void showMenu(User &loginUser) {
+  system("clear");
   cout << "1. Show menu" << endl;
   cout << "2. View info" << endl;
   cout << "3. Change password" << endl;
@@ -15,21 +16,25 @@ void showMenu(User &loginUser) {
   switch (number) {
     case 1:
     {
+      system("clear");
       showRoleList(loginUser);
       break;
     }
     case 2:
     {
+      system("clear");
       viewInfo(loginUser);
       break;
     }
     case 3:
     {
+      system("clear");
       changePassword(loginUser);
       break;
     }
     case 4:
     {
+      system("clear");
       logout(loginUser);
       break;
     }

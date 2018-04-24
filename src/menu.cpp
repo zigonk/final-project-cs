@@ -2,6 +2,7 @@
 
 void login(User &loginUser)
 {
+	system("clear");
 	vUser UL;
 	readUserList(USER_PATH, UL);
 	while (loginUser.username.empty())
@@ -28,6 +29,7 @@ void showRoleList(User &loginUser)
 {
 	while (true)
 	{
+		system("clear");
 		cout << endl;
 		switch (loginUser.uType)
 		{
@@ -82,7 +84,7 @@ void showRoleList(User &loginUser)
 			int choice = 0;
 			do
 			{
-				cout << "What do you want to do:";
+				cout << "What do you want to do: ";
 				cin >> choice;
 				if (choice < 1 || choice > 23)
 				{
@@ -90,7 +92,7 @@ void showRoleList(User &loginUser)
 					char c;
 					do
 					{
-						cout << "Do you want to try again (y/n):";
+						cout << "Do you want to try again (y/n): ";
 						cin >> c;
 					} while (tolower(c) != 'y' && tolower(c) != 'n');
 					if (tolower(c) == 'n')
@@ -101,111 +103,133 @@ void showRoleList(User &loginUser)
 			{
 			case 1:
 			{
+				system("clear");
 				importStudentOfClass();
 				break;
 			}
 			case 2:
 			{
+				system("clear");
 				addANewStudent();
 				break;
 			}
 			case 3:
 			{
+				system("clear");
 				editAnExistingStudent();
 				break;
 			}
 			case 4:
 			{
+				system("clear");
 				removeAStudent();
 				break;
 			}
 			case 5:
 			{
+				system("clear");
 				changeStudentFromClassAToClassB();
 				break;
 			}
 			case 6:
 			{
+				system("clear");
 				addANewEmptyClass();
 				break;
 			}
 			case 7:
 			{
+				system("clear");
 				viewListOfClass();
 				break;
 			}
 			case 8:
 			{
+				system("clear");
 				viewListOfStudentInAClass();
 				break;
 			}
 			case 9:
 			{
+				system("clear");
 				importCourses();
 				break;
 			}
 			case 10:
 			{
+				system("clear");
 				addANewCourse();
 				break;
 			}
 			case 11:
 			{
+				system("clear");
 				editAnCourse();
 				break;
 			}
 			case 12:
 			{
+				system("clear");
 				removeACourse();
 				break;
 			}
 			case 13:
 			{
+				system("clear");
 				viewListOfACourse();
 				break;
 			}
 			case 14:
 			{
-				importCourses();
+				system("clear");
+				importCourseSchedule();
 				break;
 			}
 			case 15:
 			{
+				system("clear");
 				addACourseSchedule();
 				break;
 			}
 			case 16:
 			{
+				system("clear");
 				editACourseSchedule();
 				break;
 			}
 			case 17:
 			{
+				system("clear");
 				removeACourseSchedule();
 				break;
 			}
 			case 18:
 			{
+				system("clear");
 				viewListOfCourseSchedule();
 				break;
 			}
 			case 19:
 			{
+				system("clear");
 				searchAndViewAttendaceList();
 				break;
 			}
 			case 20:
 			{
+				system("clear");
 				exportAttendenceList();
 				break;
 			}
 			case 21:
 			{
+				system("clear");
 				searchAndViewScoreboard();
 				break;
 			}
 			case 22:
 			{
+				system("clear");
 				exportScoreBoard();
 				break;
 			}
@@ -237,16 +261,19 @@ void showRoleList(User &loginUser)
 			{
 			case 1:
 			{
+				system("clear");
 				importScoreBoard(loginUser);
 				break;
 			}
 			case 2:
 			{
+				system("clear");
 				editGradeOfStudent(loginUser);
 				break;
 			}
 			case 3:
 			{
+				system("clear");
 				viewScoreBoard(loginUser);
 				break;
 			}
@@ -274,26 +301,29 @@ void showRoleList(User &loginUser)
 						return;
 				}
 			} while (choice < 1 || choice > 5);
-			cin >> choice;
 			switch (choice)
 			{
 			case 1:
 			{
+				system("clear");
 				checkIn(loginUser);
 				break;
 			}
 			case 2:
 			{
+				system("clear");
 				viewCheckInResult(loginUser);
 				break;
 			}
 			case 3:
 			{
+				system("clear");
 				viewScoreOfACourse(loginUser);
 				break;
 			}
 			case 4:
 			{
+				system("clear");
 				viewSchedule(loginUser);
 				break;
 			}
@@ -303,6 +333,7 @@ void showRoleList(User &loginUser)
 			}
 			}
 		}
+		cout << endl;
 		cout << "Press anykey to continue.";
 		cin.ignore();
 		cin.get();
@@ -311,6 +342,7 @@ void showRoleList(User &loginUser)
 
 void viewInfo(User loginUser)
 {
+	system("clear");
 	cout << "Info of your user" << endl;
 	cout << "Username: " << loginUser.username << endl;
 	cout << "Fullname: " << loginUser.fullname << endl;
@@ -337,10 +369,14 @@ void viewInfo(User loginUser)
 	}
 	cout << "Password: " << loginUser.password << endl;
 	cout << "Class: " << loginUser.classCode << "\n\n";
+	cout << "Press anykey to continue.";
+	cin.ignore();
+	cin.get();
 }
 
 void changePassword(User &loginUser)
 {
+	system("clear");
 	string oldPassword, newPassword;
 	cout << "Please input your old password:";
 	cin >> oldPassword;

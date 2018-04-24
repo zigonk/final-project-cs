@@ -188,7 +188,8 @@ void writeUserList(const char *PATH, vUser &UL)
     fout << UL.UserList[i].mobilePhone << ',';
     fout << UL.UserList[i].uType << ',';
     fout << UL.UserList[i].password << ',';
-    fout << UL.UserList[i].classCode << '\n';
+    fout << UL.UserList[i].classCode;
+    if (i < UL.UserList.size()-1) fout << '\n';
   }
   fout.close();
 }
@@ -204,7 +205,8 @@ void writeClassList(const char *PATH, vClass &CL)
   }
   for (int i = 0; i < CL.ClassList.size(); ++i)
   {
-    fout << CL.ClassList[i].classCode << '\n';
+    fout << CL.ClassList[i].classCode;
+    if (i < CL.ClassList.size()-1) fout << '\n';
   }
   fout.close();
 }
@@ -224,7 +226,8 @@ void writePresenseList(const char *PATH, vPresense &PL)
     fout << PL.PresenseList[i].year << ',';
     fout << PL.PresenseList[i].semester << ',';
     fout << PL.PresenseList[i].studentID << ',';
-    fout << PL.PresenseList[i].week << '\n';
+    fout << PL.PresenseList[i].week;
+    if (i < PL.PresenseList.size()-1) fout << '\n';
   }
   fout.close();
 }
@@ -248,7 +251,8 @@ void writeScoreList(const char *PATH, vScore &SL)
     fout << SL.ScoreList[i].labScore << ',';
     fout << SL.ScoreList[i].finalScore << ',';
     fout << SL.ScoreList[i].bonusScore << ',';
-    fout << SL.ScoreList[i].totalScore << '\n';
+    fout << SL.ScoreList[i].totalScore;
+    if (i < SL.ScoreList.size()-1) fout << '\n';
   }
   fout.close();
 }
@@ -269,7 +273,8 @@ void writeCourseList(const char *PATH, vCourse &CL)
     fout << CL.CourseList[i].semester << ',';
     fout << CL.CourseList[i].courseName << ',';
     fout << CL.CourseList[i].lecturerUserName << ',';
-    fout << CL.CourseList[i].classCode << '\n';
+    fout << CL.CourseList[i].classCode;
+    if (i < CL.CourseList.size()-1) fout << '\n';
   }
   fout.close();
 }
@@ -290,7 +295,8 @@ void writeCourseScheduleList(const char *PATH, vCourseSchedule &CSL)
     fout << CSL.CourseScheduleList[i].endAt << ',';
     fout << CSL.CourseScheduleList[i].from << ',';
     fout << CSL.CourseScheduleList[i].to << ',';
-    fout << CSL.CourseScheduleList[i].dayOfWeek << '\n';
+    fout << CSL.CourseScheduleList[i].dayOfWeek;
+    if (i < CSL.CourseScheduleList.size()-1) fout << '\n';
   }
   fout.close();
 }

@@ -38,6 +38,24 @@ void importCourses()
 	writeCourseList(COURSE_PATH, CL);
 }
 
+void importCourseSchedule() 
+{
+	char PATH[100];
+	cout << "Please input path of file you want to import:";
+	cin.ignore();
+	cin.getline(PATH, 100);
+
+	vCourseSchedule newCL;
+	readCourseScheduleList(PATH, newCL);
+	vCourseSchedule  CSL;
+	readCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
+	for (auto &i : newCL.CourseScheduleList)
+	{
+		CSL.CourseScheduleList.push_back(i);
+	}
+	writeCourseScheduleList(COURSE_SCHEDULE_PATH, CSL);
+}
+
 void addANewStudent()
 {
 	string s;
@@ -66,6 +84,7 @@ void addANewStudent()
 	cin >> s;
 	tmp.classCode = s;
 	UL.UserList.push_back(tmp);
+	writeUserList(USER_PATH, UL);
 }
 
 void editAnExistingStudent()
@@ -271,7 +290,8 @@ void editAnCourse()
 		cout << "Enter year: ";
 		cin >> s;
 		CL.CourseList[index].year = s;
-		cout << "Enter course name";
+		cout << "Enter course name: ";
+		cin.ignore();
 		getline(cin, s);
 		CL.CourseList[index].courseName = s;
 		cout << "Enter the lecture user name: ";
@@ -491,7 +511,7 @@ void viewListOfCourseSchedule()
 		cout << "End at: " << i.endAt << endl;
 		cout << "From: " << i.from << endl;
 		cout << "To: " << i.to << endl;
-		cout << "Day of week: " << i.dayOfWeek << endl;
+		cout << "Day of week: " << week[i.dayOfWeek] << endl;
 		cout << endl;
 	}
 }
